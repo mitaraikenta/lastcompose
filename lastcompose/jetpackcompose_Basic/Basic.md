@@ -117,4 +117,21 @@ UI 要素は、それぞれで画面の一部を処理し、個別に編集っ�
 
 ![](../../img/compose11.png)
 
+forとの合わせ技！
+
 ![](../../img/HerroAndroid2.png)
+
+#### ボタンの追加
+
+****
+
+Button は、マテリアル パッケージによって提供されるコンポーザブルで、
+最後の引数としてコンポーザブルを受け取ります。後置ラムダはかっこの外側に移動できるため、任意のコンテンツを子としてボタンに追加できます。たとえば、次のように Text を追加できます。
+
+```kotlin
+Button(
+    onClick = { } // You'll learn about this callback later
+) {
+    Text("Show less")
+}
+```
