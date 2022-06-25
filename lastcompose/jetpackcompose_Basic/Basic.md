@@ -135,3 +135,49 @@ Button(
     Text("Show less")
 }
 ```
+
+composeにはマテリアルデザインの仕様に応じて、異なるタイプのButtonが用意されている。
+(Button、OutlinedButton、TextButton)
+
+#### composeの状態
+
+****
+
+ボタンを押したら変化を起こしてみる
+
+各アイテムが展開されているかどうかを示す値（つまり、アイテムの状態）をどこかに保存する必要がある
+
+```kotlin
+@Composable
+private fun Greeting(name: String) {
+    var expanded = false // Don't do this!
+
+    Surface(
+        color = MaterialTheme.colors.primary,
+        modifier = Modifier.padding(vertical = 4.dp, horizontal = 8.dp)
+    ) {
+        Row(modifier = Modifier.padding(24.dp)) {
+            Column(modifier = Modifier.weight(1f)) {
+                Text(text = "Hello, ")
+                Text(text = name)
+            }
+            OutlinedButton(
+                onClick = { expanded = !expanded }
+            ) {
+                Text(if (expanded) "Show less" else "Show more")
+            }
+        }
+    }
+}
+```
+
+
+onClick アクションと動的ボタンテキストも追加
+
+しかし、これは期待どおりに機能しません。expanded 変数に異なる値が設定されても、Compose はそれを「状態変更」として検出しないため、何も起こりません
+
+再コンポジション・・・Compose アプリは、コンポーズ可能な関数を呼び出すことにより、データを UI に変換します。データが変更されると、Compose はそれらの関数を新しいデータで再実行し、 更新された UI を作成
+
+composeの思想いわく「コンポーズ可能な関数は任意の順序で頻繁に実行される可能性があるため、コードが実行される順序、または関数が再コンポーズされる回数に依存しないようにしてください。」だそうです
+
+
