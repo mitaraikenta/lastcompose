@@ -34,5 +34,41 @@ EditText による afterTextChanged の呼び出し、加速度計による新�
 - 状態の更新 - イベント　ハイドラがUIで使用される状態を変更
 - 状態の表示 - UIが更新され、新しい状態を表示する
 
+## composeとviewmodel
+
+****
+
+最終的にこんなアプリができます
+
+![](../../img/compose12.png)
+
+Todoscrreen.kt
+
+```kotlin
+@Composable
+fun TodoScreen(
+   items: List<TodoItem>,
+   onAddItem: (TodoItem) -> Unit,
+   onRemoveItem: (TodoItem) -> Unit
+) {
+   /* ... */
+}
+```
+
+このコンポーザブルは、編集可能な TODO リストを表示しますが、それ自体の状態はありません。変更可能な値が状態でしたが、TodoScreen の引数はどれも変更できません。
+
+- items 画面に表示するアイテムの不変のリスト
+- onAddItem ユーザーがアイテムの追加をリクエストしたときのイベント
+- onRemoveItem ユーザーがアイテムの削除をリクエストしたときのイベント
+
+このcomposableはステートレスなので、渡されたアイテムリストが表示されるだけで、リストを直接編集不可
+
+じゃあどうやるかって？変更をリクエストできる 2 つのイベント onRemoveItem と onAddItem が渡せばおｋ
+
+
+
+
+
+
 
 
